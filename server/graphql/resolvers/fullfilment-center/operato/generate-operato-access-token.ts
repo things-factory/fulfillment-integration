@@ -3,17 +3,17 @@ import { getRepository } from 'typeorm'
 import { FullfilmentCenters } from '../../../../entities'
 
 import { config } from '@things-factory/env'
-const operatoConfig = config.get('marketplaceIntegrationOperato', {})
+const operatoConfig = config.get('fullfilmentIntegrationOperato', {})
 const { apiKey, apiSecret } = operatoConfig
 
 export const generateOperatoAccessToken = {
-  async generateOperatoAccessToken(_: any, { id, code, shopId }, context: any) {
+  async generateOperatoAccessToken(_: any, { id, code, centerId }, context: any) {
     const repository = getRepository(FullfilmentCenters)
     const fullfilmentCenter: any = await repository.findOne({
       where: { domain: context.state.domain, id }
     })
 
-    const response = await fetch(`https://${shopId}.myoperato.com/admin/oauth/access_token`, {
+    const response = await fetch(`https://${centerId}.myoperato.com/admin/oauth/access_token`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export const generateOperatoAccessToken = {
       accessToken: access_token,
       refreshToken: '',
       accessInfo: JSON.stringify(body, null, 2),
-      centerId: shopId,
+      centerId: centerId,
       status: 'active'
     }
 

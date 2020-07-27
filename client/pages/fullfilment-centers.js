@@ -113,14 +113,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
           header: i18next.t('field.platform'),
           record: {
             editable: true,
-            options: [
-              '',
-              'lazada',
-              'shopee',
-              'shopify',
-              'zalora'
-              /*, 'qoo10', 'amazon', 'lelong', 'shopclues', 'magento', 'flipkart'*/
-            ]
+            options: ['', 'operato']
           },
           sortable: true,
           width: 180
@@ -224,7 +217,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
     const response = await client.query({
       query: gql`
       query {
-        marketplaceCenters(${gqlBuilder.buildArgs({
+        fullfilmentCenters(${gqlBuilder.buildArgs({
           filters: await this.searchForm.getQueryFilters(),
           pagination: { page, limit },
           sortings: sorters
@@ -245,8 +238,8 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
 
     if (!response.errors) {
       return {
-        total: response.data.marketplaceCenters.total || 0,
-        records: response.data.marketplaceCenters.items || []
+        total: response.data.fullfilmentCenters.total || 0,
+        records: response.data.fullfilmentCenters.items || []
       }
     }
   }

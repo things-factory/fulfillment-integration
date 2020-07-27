@@ -1,16 +1,5 @@
-// import * as CommonCode from './common-code'
-// import * as CommonCodeDetail from './common-code-detail'
-//
-// export const queries = [
-//   CommonCode.Query,
-//   CommonCodeDetail.Query
-// ]
+import * as FullfilmentCenter from './fullfilment-center'
 
-// export const mutations = [
-//   CommonCode.Mutation,
-//   CommonCodeDetail.Mutation
-// ]
+export const queries = [FullfilmentCenter.Query]
 
-export const queries = []
-
-export const mutations = []
+export const mutations = [FullfilmentCenter.Mutation]

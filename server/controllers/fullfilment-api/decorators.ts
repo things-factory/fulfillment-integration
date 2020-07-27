@@ -1,5 +1,5 @@
 import Debug from 'debug'
-const debug = Debug('things-factory:marketplace-integration:fullfilment-api-decorator')
+const debug = Debug('things-factory:fullfilment-integration:fullfilment-api-decorator')
 
 import { FullfilmentCenters } from 'server/entities'
 
@@ -17,7 +17,7 @@ export const api = (target: Object, property: string, descriptor: TypedPropertyD
 
     var m = apis[method.name]
     if (!m) {
-      throw Error(`Marketplace Platform '${platform}' doesn't have API ${method.name}`)
+      throw Error(`Fullfilment Platform '${platform}' doesn't have API ${method.name}`)
     }
 
     var {

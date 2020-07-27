@@ -28,7 +28,7 @@ export const Mutation = `
   generateOperatoAccessToken (
     id: String!
     code: String!
-    shopId: String!
+    centerId: String!
   ): FullfilmentCenter
 
   deactivateOperatoCenter (

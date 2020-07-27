@@ -114,14 +114,14 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
   async handleConnectCallback() {
     const response = await client.mutate({
       mutation: gql`
-        mutation($id: String!, $code: String!, $shopId: String!) {
-          generateOperatoAccessToken(id: $id, code: $code, shopId: $shopId) ${FULLFILMENT_CENTER_RESULT}
+        mutation($id: String!, $code: String!, $centerId: String!) {
+          generateOperatoAccessToken(id: $id, code: $code, centerId: $centerId) ${FULLFILMENT_CENTER_RESULT}
         }
       `,
       variables: {
         id: this.id,
         code: this.code,
-        shopId: this.centerId
+        centerId: this.centerId
       }
     })
 
