@@ -6,7 +6,7 @@ const debug = Debug('things-factory:marketplace-integration:operato')
 export type OperatoConfig = {
   apiKey: string
   apiSecret: string
-  shop: string
+  center: string
   accessToken?: string
 }
 
@@ -25,20 +25,20 @@ export class Operato {
     // TODO make scopes properly
     var scopes = 'read_products,write_orders,read_customers'
 
-    var { shop, apiKey } = this.config
+    var { center, apiKey } = this.config
 
-    return `https://${shop}.myoperato.com/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&redirect_uri=${redirectUrl}&state=${nonce}&grant_options[]=${accessMode}`
+    return `https://${center}.myoperato.com/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&redirect_uri=${redirectUrl}&state=${nonce}&grant_options[]=${accessMode}`
     // return `https://${centerId}.myoperato.com/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&redirect_uri=${redirectUrl}&state=${nonce}`
   }
 
   async get(path: string, data: any) {
-    const { shop, accessToken } = this.config
+    const { center, accessToken } = this.config
 
     const qs = Object.entries(data)
       .map(([k, v]) => `${k}=${encodeURIComponent(String(v))}`)
       .join('&')
 
-    const endpoint = `https://${shop}.myoperato.com/admin/api/2020-07${path}${qs ? '?' + qs : ''}`
+    const endpoint = `https://${center}.myoperato.com/admin/api/2020-07${path}${qs ? '?' + qs : ''}`
     debug('endpoint', endpoint)
 
     const response = await fetch(endpoint, {
@@ -55,13 +55,13 @@ export class Operato {
   }
 
   async post(path: string, data: any = {}) {
-    const { shop, accessToken } = this.config
+    const { center, accessToken } = this.config
 
     debug('data', data)
 
     const jsondata = JSON.stringify(data)
 
-    const endpoint = `https://${shop}.myoperato.com/admin/api/2020-07${path}`
+    const endpoint = `https://${center}.myoperato.com/admin/api/2020-07${path}`
 
     const response = await fetch(endpoint, {
       method: 'post',

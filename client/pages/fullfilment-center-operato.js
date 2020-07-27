@@ -161,7 +161,7 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
     var response = await client.mutate({
       mutation: gql`
         mutation($name: String!) {
-          deactivateOperatoStore(name: $name) ${FULLFILMENT_CENTER_RESULT}
+          deactivateOperatoCenter(name: $name) ${FULLFILMENT_CENTER_RESULT}
         }
       `,
       variables: {
@@ -169,7 +169,7 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
       }
     })
 
-    this.fullfilmentCenter = response.data.deactivateOperatoStore
+    this.fullfilmentCenter = response.data.deactivateOperatoCenter
     var { status } = this.fullfilmentCenter
     this.code = ''
 
