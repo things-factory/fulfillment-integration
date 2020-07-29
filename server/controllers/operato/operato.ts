@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import Debug from 'debug'
 
-const debug = Debug('things-factory:fullfilment-integration:operato')
+const debug = Debug('things-factory:fulfillment-integration:operato')
 
 export type OperatoConfig = {
   apiKey: string

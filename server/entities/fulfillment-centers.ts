@@ -5,10 +5,10 @@ import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedCol
 @Entity()
 @Index(
   'ix_distribution-centers_0',
-  (fullfilmentCenters: FullfilmentCenters) => [fullfilmentCenters.domain, fullfilmentCenters.name],
+  (fulfillmentCenters: FulfillmentCenters) => [fulfillmentCenters.domain, fulfillmentCenters.name],
   { unique: true }
 )
-export class FullfilmentCenters {
+export class FulfillmentCenters {
   @PrimaryGeneratedColumn('uuid')
   id: string
 

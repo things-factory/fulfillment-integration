@@ -1,23 +1,23 @@
 import { getRepository } from 'typeorm'
-import { FullfilmentCenters } from '../../entities'
+import { FulfillmentCenters } from '../../entities'
 import { api } from './decorators'
 
-export class FullfilmentAPI {
+export class FulfillmentAPI {
   static platforms = {}
 
   static registerPlatform(name, action, apis) {
-    FullfilmentAPI.platforms[name] = {
+    FulfillmentAPI.platforms[name] = {
       action,
       apis
     }
   }
 
   static getPlatform(name) {
-    return FullfilmentAPI.platforms[name]
+    return FulfillmentAPI.platforms[name]
   }
 
-  static async getFullfilmentCenter(id) {
-    const repository = getRepository(FullfilmentCenters)
+  static async getFulfillmentCenter(id) {
+    const repository = getRepository(FulfillmentCenters)
     // return await repository.find(id)
     return await repository.findOne({
       where: { id },

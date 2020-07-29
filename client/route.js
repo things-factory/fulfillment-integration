@@ -1,14 +1,14 @@
 export default function route(page) {
   switch (page) {
     case '':
-      return '/fullfilment-centers'
+      return '/fulfillment-centers'
 
-    case 'fullfilment-centers':
-      import('./pages/fullfilment-centers')
+    case 'fulfillment-centers':
+      import('./pages/fulfillment-centers')
       return page
 
-    case 'fullfilment-center-operato':
-      import('./pages/fullfilment-center-operato')
+    case 'fulfillment-center-operato':
+      import('./pages/fulfillment-center-operato')
       return page
   }
 }

@@ -1,11 +1,11 @@
 import { ListParam, convertListParams } from '@things-factory/shell'
 import { getRepository } from 'typeorm'
-import { FullfilmentCenters } from '../../../entities'
+import { FulfillmentCenters } from '../../../entities'
 
-export const fullfilmentCentersResolver = {
-  async fullfilmentCenters(_: any, params: ListParam, context: any) {
+export const fulfillmentCentersResolver = {
+  async fulfillmentCenters(_: any, params: ListParam, context: any) {
     const convertedParams = convertListParams(params)
-    const [items, total] = await getRepository(FullfilmentCenters).findAndCount({
+    const [items, total] = await getRepository(FulfillmentCenters).findAndCount({
       ...convertedParams,
       relations: ['domain', 'creator', 'updater']
     })

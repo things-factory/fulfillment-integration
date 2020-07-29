@@ -1,23 +1,23 @@
 import Debug from 'debug'
-const debug = Debug('things-factory:fullfilment-integration:fullfilment-api-decorator')
+const debug = Debug('things-factory:fulfillment-integration:fulfillment-api-decorator')
 
-import { FullfilmentCenters } from 'server/entities'
+import { FulfillmentCenters } from 'server/entities'
 
 const NOOP = v => v
 
 export const api = (target: Object, property: string, descriptor: TypedPropertyDescriptor<any>): any => {
   const method = descriptor.value
 
-  descriptor.value = async function (center: FullfilmentCenters, request) {
-    const FullfilmentAPI = this
+  descriptor.value = async function (center: FulfillmentCenters, request) {
+    const FulfillmentAPI = this
 
     var { platform } = center
 
-    var { action: platformAction, apis } = FullfilmentAPI.getPlatform(platform)
+    var { action: platformAction, apis } = FulfillmentAPI.getPlatform(platform)
 
     var m = apis[method.name]
     if (!m) {
-      throw Error(`Fullfilment Platform '${platform}' doesn't have API ${method.name}`)
+      throw Error(`Fulfillment Platform '${platform}' doesn't have API ${method.name}`)
     }
 
     var {

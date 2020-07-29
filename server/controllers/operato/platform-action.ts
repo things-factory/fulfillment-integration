@@ -1,7 +1,7 @@
 import { Operato } from './operato'
 
 import { config } from '@things-factory/env'
-const operatoConfig = config.get('fullfilmentIntegrationOperato', {})
+const operatoConfig = config.get('fulfillmentIntegrationOperato', {})
 const { apiKey, apiSecret } = operatoConfig
 
 function substitute(path, obj) {

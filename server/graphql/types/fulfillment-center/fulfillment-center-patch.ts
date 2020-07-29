@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
-export const FullfilmentCenterPatch = gql`
-  input FullfilmentCenterPatch {
+export const FulfillmentCenterPatch = gql`
+  input FulfillmentCenterPatch {
     id: String
     name: String
     description: String

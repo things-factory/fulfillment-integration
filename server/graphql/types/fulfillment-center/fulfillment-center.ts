@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
-export const FullfilmentCenter = gql`
-  type FullfilmentCenter {
+export const FulfillmentCenter = gql`
+  type FulfillmentCenter {
     id: String
     name: String
     domain: Domain

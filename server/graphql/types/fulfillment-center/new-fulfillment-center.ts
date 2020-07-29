@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
-export const NewFullfilmentCenter = gql`
-  input NewFullfilmentCenter {
+export const NewFulfillmentCenter = gql`
+  input NewFulfillmentCenter {
     name: String!
     description: String
     platform: String!

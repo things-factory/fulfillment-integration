@@ -12,7 +12,7 @@ const FULLFILMENT_CENTER_RESULT = `{
   status
 }`
 
-class FullfilmentCenterOperato extends connect(store)(PageView) {
+class FulfillmentCenterOperato extends connect(store)(PageView) {
   static get styles() {
     return css`
       :host {
@@ -29,7 +29,7 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
   static get properties() {
     return {
       id: String,
-      fullfilmentCenter: Object,
+      fulfillmentCenter: Object,
       code: String,
       centerId: String
     }
@@ -42,10 +42,10 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
   }
 
   render() {
-    var { name = '', centerId = '', status = '', countryCode = '', accessInfo = '' } = this.fullfilmentCenter || {}
+    var { name = '', centerId = '', status = '', countryCode = '', accessInfo = '' } = this.fulfillmentCenter || {}
 
     return html`
-      <a href="fullfilment-centers">Centers</a>
+      <a href="fulfillment-centers">Centers</a>
 
       <h2>${name}</h2>
       <h3>status: ${status || 'inactive'}</h3>
@@ -74,7 +74,7 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
       const response = await client.query({
         query: gql`
           query($id: String!) {
-            fullfilmentCenter(id: $id) ${FULLFILMENT_CENTER_RESULT}
+            fulfillmentCenter(id: $id) ${FULLFILMENT_CENTER_RESULT}
           }
         `,
         variables: {
@@ -82,8 +82,8 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
         }
       })
 
-      this.fullfilmentCenter = response.data.fullfilmentCenter
-      this.centerId = this.fullfilmentCenter.centerId
+      this.fulfillmentCenter = response.data.fulfillmentCenter
+      this.centerId = this.fulfillmentCenter.centerId
 
       if (location.pathname.endsWith('connect-callback')) {
         let { code } = changes.params
@@ -125,8 +125,8 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
       }
     })
 
-    this.fullfilmentCenter = response.data.generateOperatoAccessToken
-    var { status, name } = this.fullfilmentCenter
+    this.fulfillmentCenter = response.data.generateOperatoAccessToken
+    var { status, name } = this.fulfillmentCenter
 
     document.dispatchEvent(
       new CustomEvent('notify', {
@@ -156,7 +156,7 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
   }
 
   async deactivate() {
-    var { name } = this.fullfilmentCenter
+    var { name } = this.fulfillmentCenter
 
     var response = await client.mutate({
       mutation: gql`
@@ -169,8 +169,8 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
       }
     })
 
-    this.fullfilmentCenter = response.data.deactivateOperatoCenter
-    var { status } = this.fullfilmentCenter
+    this.fulfillmentCenter = response.data.deactivateOperatoCenter
+    var { status } = this.fulfillmentCenter
     this.code = ''
 
     document.dispatchEvent(
@@ -184,4 +184,4 @@ class FullfilmentCenterOperato extends connect(store)(PageView) {
   }
 }
 
-customElements.define('fullfilment-center-operato', FullfilmentCenterOperato)
+customElements.define('fulfillment-center-operato', FulfillmentCenterOperato)

@@ -1,10 +1,10 @@
 import { getRepository } from 'typeorm'
-import { FullfilmentCenters } from '../../../../entities'
+import { FulfillmentCenters } from '../../../../entities'
 
 export const deactivateOperatoCenter = {
   async deactivateOperatoCenter(_: any, { name }, context: any) {
-    const repository = getRepository(FullfilmentCenters)
-    const fullfilmentCenter: any = await repository.findOne({
+    const repository = getRepository(FulfillmentCenters)
+    const fulfillmentCenter: any = await repository.findOne({
       where: { domain: context.state.domain, name }
     })
 
@@ -18,7 +18,7 @@ export const deactivateOperatoCenter = {
     }
 
     return await repository.save({
-      ...fullfilmentCenter,
+      ...fulfillmentCenter,
       ...patch,
       updater: context.state.user
     })

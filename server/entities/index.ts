@@ -1,5 +1,5 @@
-import { FullfilmentCenters } from './fullfilment-centers'
+import { FulfillmentCenters } from './fulfillment-centers'
 
-export const entities = [FullfilmentCenters]
+export const entities = [FulfillmentCenters]
 
-export { FullfilmentCenters }
+export { FulfillmentCenters }

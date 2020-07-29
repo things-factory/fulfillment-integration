@@ -4,9 +4,9 @@ import { action } from './platform-action'
 import { echo } from './echo'
 import { getCenterProducts } from './get-center-products'
 
-import { FullfilmentAPI } from '../fullfilment-api'
+import { FulfillmentAPI } from '../fulfillment-api'
 
-FullfilmentAPI.registerPlatform('operato', action, {
+FulfillmentAPI.registerPlatform('operato', action, {
   echo,
   getCenterProducts
 })

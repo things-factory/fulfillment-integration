@@ -7,7 +7,7 @@ import { ScrollbarStyles } from '@things-factory/styles'
 
 import '@things-factory/form-ui'
 
-class FullfilmentCenters extends localize(i18next)(PageView) {
+class FulfillmentCenters extends localize(i18next)(PageView) {
   static get styles() {
     return [
       ScrollbarStyles,
@@ -41,7 +41,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
 
   get context() {
     return {
-      title: i18next.t('title.fullfilment centers'),
+      title: i18next.t('title.fulfillment centers'),
       actions: [
         {
           title: i18next.t('button.save'),
@@ -53,7 +53,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
         }
       ],
       exportable: {
-        name: i18next.t('title.fullfilment centers'),
+        name: i18next.t('title.fulfillment centers'),
         data: null
       }
     }
@@ -88,7 +88,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
                 return
               }
 
-              navigate(`fullfilment-center-${record.platform}/${record.id}`)
+              navigate(`fulfillment-center-${record.platform}/${record.id}`)
             }
           }
         },
@@ -217,7 +217,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
     const response = await client.query({
       query: gql`
       query {
-        fullfilmentCenters(${gqlBuilder.buildArgs({
+        fulfillmentCenters(${gqlBuilder.buildArgs({
           filters: await this.searchForm.getQueryFilters(),
           pagination: { page, limit },
           sortings: sorters
@@ -238,8 +238,8 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
 
     if (!response.errors) {
       return {
-        total: response.data.fullfilmentCenters.total || 0,
-        records: response.data.fullfilmentCenters.items || []
+        total: response.data.fulfillmentCenters.total || 0,
+        records: response.data.fulfillmentCenters.items || []
       }
     }
   }
@@ -265,7 +265,7 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
         const response = await client.mutate({
           mutation: gql`
             mutation($names: [String]!) {
-              deleteFullfilmentCenters(names: $names)
+              deleteFulfillmentCenters(names: $names)
             }
           `,
           variables: {
@@ -305,8 +305,8 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
 
       const response = await client.mutate({
         mutation: gql`
-          mutation($patches: [FullfilmentCenterPatch]!) {
-            updateMultipleFullfilmentCenter(patches: $patches) {
+          mutation($patches: [FulfillmentCenterPatch]!) {
+            updateMultipleFulfillmentCenter(patches: $patches) {
               name
             }
           }
@@ -321,4 +321,4 @@ class FullfilmentCenters extends localize(i18next)(PageView) {
   }
 }
 
-customElements.define('fullfilment-centers', FullfilmentCenters)
+customElements.define('fulfillment-centers', FulfillmentCenters)

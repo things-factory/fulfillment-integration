@@ -1,15 +1,15 @@
 import { expect } from 'chai'
 
-import { FullfilmentAPI } from '../../server/controllers/fullfilment-api'
+import { FulfillmentAPI } from '../../server/controllers/fulfillment-api'
 import { centers } from './test-centers'
 
-describe('FullfilmentAPI', function () {
+describe('FulfillmentAPI', function () {
   this.timeout(20000)
 
   describe('getCenterProducts', function () {
     it('should return center products', async function () {
       for (let center of centers) {
-        const result = await FullfilmentAPI.getCenterProducts(center, {
+        const result = await FulfillmentAPI.getCenterProducts(center, {
           pagination: {
             page: 0,
             limit: 100

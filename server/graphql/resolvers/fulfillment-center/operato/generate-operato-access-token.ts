@@ -1,15 +1,15 @@
 import fetch from 'node-fetch'
 import { getRepository } from 'typeorm'
-import { FullfilmentCenters } from '../../../../entities'
+import { FulfillmentCenters } from '../../../../entities'
 
 import { config } from '@things-factory/env'
-const operatoConfig = config.get('fullfilmentIntegrationOperato', {})
+const operatoConfig = config.get('fulfillmentIntegrationOperato', {})
 const { apiKey, apiSecret } = operatoConfig
 
 export const generateOperatoAccessToken = {
   async generateOperatoAccessToken(_: any, { id, code, centerId }, context: any) {
-    const repository = getRepository(FullfilmentCenters)
-    const fullfilmentCenter: any = await repository.findOne({
+    const repository = getRepository(FulfillmentCenters)
+    const fulfillmentCenter: any = await repository.findOne({
       where: { domain: context.state.domain, id }
     })
 
@@ -41,7 +41,7 @@ export const generateOperatoAccessToken = {
     }
 
     return await repository.save({
-      ...fullfilmentCenter,
+      ...fulfillmentCenter,
       ...patch,
       updater: context.state.user
     })

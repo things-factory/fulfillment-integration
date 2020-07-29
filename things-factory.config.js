@@ -5,12 +5,12 @@ export default {
   route,
   routes: [
     {
-      tagname: 'fullfilment-centers',
-      page: 'fullfilment-centers'
+      tagname: 'fulfillment-centers',
+      page: 'fulfillment-centers'
     },
     {
-      tagname: 'fullfilment-center-operato',
-      page: 'fullfilment-center-operato'
+      tagname: 'fulfillment-center-operato',
+      page: 'fulfillment-center-operato'
     }
   ],
   bootstrap
