@@ -3,8 +3,9 @@ import { getRepository } from 'typeorm'
 import { FulfillmentCenters } from '../../../../entities'
 
 import { config } from '@things-factory/env'
-const operatoConfig = config.get('fulfillmentIntegrationOperato', {})
-const { apiKey, apiSecret } = operatoConfig
+const { host, appKey, appSecret } = config.get('fulfillmentIntegrationOperato', {})
+
+const debug = require('debug')('things-factory:fulfillment-integration:generate-operato-access-token')
 
 export const generateOperatoAccessToken = {
   async generateOperatoAccessToken(_: any, { id, code, centerId }, context: any) {
@@ -13,23 +14,28 @@ export const generateOperatoAccessToken = {
       where: { domain: context.state.domain, id }
     })
 
-    const response = await fetch(`https://${centerId}.myoperato.com/admin/oauth/access_token`, {
+    const requestBody = {
+      grant_type: 'authorization_code',
+      client_id: appKey,
+      client_secret: appSecret,
+      code
+    }
+
+    debug('request body', requestBody)
+
+    const response = await fetch(`http://${centerId}.${host}/admin/oauth/access_token`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        client_id: apiKey,
-        client_secret: apiSecret,
-        code
-      })
+      body: JSON.stringify(requestBody)
     })
 
     const body = await response.json()
     const { access_token } = body
 
     if (!access_token) {
-      throw new Error(`get seller information failed: ${JSON.stringify(body, null, 2)}`)
+      throw new Error(`get fulfillment center information failed: ${body}`)
     }
 
     var patch = {

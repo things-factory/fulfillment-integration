@@ -2,7 +2,7 @@ import { Operato } from './operato'
 
 import { config } from '@things-factory/env'
 const operatoConfig = config.get('fulfillmentIntegrationOperato', {})
-const { apiKey, apiSecret } = operatoConfig
+const { appKey, apiSecret } = operatoConfig
 
 function substitute(path, obj) {
   var props = []
@@ -25,7 +25,7 @@ function substitute(path, obj) {
 export const action = async ({ center, method = 'get', path, request }) => {
   const client = new Operato({
     center: center.centerId,
-    apiKey,
+    appKey,
     apiSecret,
     accessToken: center.accessToken
   })
